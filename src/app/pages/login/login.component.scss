@@ -1,0 +1,28 @@
+@use '../../../assets/shared/funciones';
+@import '../../../assets/shared/colores';
+
+.body-login{
+    height: 100vh;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    background-color: $base-color;
+    .login{
+        width: 50%;
+        background-color: white;
+        border: 10px solid $color-secund;
+        border-radius: 10px;
+        &-contenido{
+            @include funciones.body-cont;
+            form{
+                @include funciones.form(100%);
+                a{
+                    text-decoration: none;
+                    text-align: center;
+                    padding: 10px;
+                    color: $base-color;
+                }
+            }
+        }
+    }
+}

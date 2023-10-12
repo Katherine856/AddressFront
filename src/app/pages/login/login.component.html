@@ -1,0 +1,18 @@
+<div class="body-login">
+    <div class="login">
+        <div class="login-contenido">
+            <h1>Login</h1>
+            <form [formGroup]="formGroup" (ngSubmit)="ingresar()">
+                <span class="p-float-label">
+                    <p-inputNumber autocomplete="off" inputId="integeronly" formControlName="user" [useGrouping]="false" ></p-inputNumber>
+                    <label for="user">Usuario</label>
+                </span>
+                <span class="p-float-label">
+                    <p-password formControlName="password" autocomplete="off" [feedback]="false" ></p-password>
+                    <label for="password">Contraseña</label>
+                </span>
+                <p-button type="submit" [disabled]="formGroup.invalid" styleClass="p-button-success">Ingresar</p-button>
+            </form>
+        </div>
+    </div>
+</div>

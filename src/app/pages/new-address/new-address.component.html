@@ -1,0 +1,65 @@
+<div class="new-address">
+    <h1> Crear direccion </h1>
+    <form [formGroup]="formGroup" (ngSubmit)="crear()">
+        <div class="form-container">
+            <div clas="field">
+                <span class="p-float-label ">
+                    <p-dropdown styleClass="Item" formControlName="country" [options]="cities" optionLabel="name" autocomplete="off"></p-dropdown>
+                    <label htmlFor="country">Pais</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label ">
+                    <p-dropdown styleClass="Item" formControlName="division" [options]="cities" optionLabel="name" autocomplete="off"></p-dropdown>
+                    <label htmlFor="division">División geografica</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <input pInputText id="address" formControlName="address" autocomplete="off"/>
+                    <label htmlFor="address">Direción</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <input pInputText id="residential" formControlName="residential" autocomplete="off" />
+                    <label htmlFor="residential">Conjunto</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <input pInputText id="building" formControlName="building" autocomplete="off"/>
+                    <label htmlFor="building">Edificio</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <input pInputText id="tower" formControlName="tower" autocomplete="off"/>
+                    <label htmlFor="tower">Torre</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <p-inputNumber autocomplete="off" inputId="floor" formControlName="floor" [useGrouping]="false" styleClass="Item" /> 
+                    <label htmlFor="floor">Piso</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <input pInputText id="apartment" formControlName="apartment" autocomplete="off"/>
+                    <label htmlFor="apartment">Apartamento</label>
+                </span>
+            </div>
+            <div clas="field">
+                <span class="p-float-label">
+                    <input pInputText id="georeference" formControlName="georeference" autocomplete="off"/>
+                    <label htmlFor="georeference">Coordenadas</label>
+                </span>
+            </div>
+            
+        </div>
+        <p-button type="submit" [disabled]="formGroup.invalid" styleClass="p-button-success center">Añadir</p-button>
+        <p-button type="submit" [disabled]="formGroup.invalid" styleClass="p-button-success center">Volver</p-button>
+    </form>
+    {{formGroup.value | json}}
+</div>

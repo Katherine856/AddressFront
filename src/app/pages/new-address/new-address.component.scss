@@ -1,0 +1,21 @@
+@use '../../../assets/shared/funciones';
+@import '../../../assets/shared/colores';
+
+:host ::ng-deep{
+    .Item{
+        width: 95%
+    }´
+    .center{
+        margin: 50px auto;
+    }
+}
+.new-address{
+        @include funciones.body-cont;
+        .form-container{
+            @include funciones.form(50% 50%);
+            span{
+                margin: 15px auto;
+                
+            }
+        }
+}
