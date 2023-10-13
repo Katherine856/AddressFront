@@ -1,0 +1,26 @@
+@use '../../../assets/shared/funciones';
+@import '../../../assets/shared/colores';
+
+.body-load {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
+    .load {
+        width: 50%;
+        border-radius: 10px;
+        background-color: #f8f9fa;
+        display: flex;
+        flex-direction: column;
+        &-contenido {
+            @include funciones.body-cont;
+            .card{
+                margin-top: 10px;
+            }
+        }
+        p-button{
+            margin: 20px auto;
+        }
+
+    }
+}

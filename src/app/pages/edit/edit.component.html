@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div class="new-address">
-    <h1> Crear direccion </h1>
+    <h1> Editar direccion </h1>
     <form [formGroup]="formGroup" (ngSubmit)="crear()">
         <div class="form-container">
             <div clas="field">
@@ -94,7 +94,7 @@
                             (click)="cd.accept()"></button>
                     </ng-template>
                 </p-confirmDialog>
-                <p-button (click)="confirm1()" type="submit" styleClass="p-button-success center">Añadir</p-button>
+                <p-button (click)="confirm1()" type="submit" styleClass="p-button-success center">Editar</p-button>
             </div>
             <p-button type="submit" styleClass="p-button-success center" (onClick)="return()">Volver</p-button>
         </div>

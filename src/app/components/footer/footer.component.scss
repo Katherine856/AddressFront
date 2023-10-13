@@ -1,0 +1,11 @@
+
+@import '../../../assets/shared/colores';
+
+footer {
+    background-color: $base-color;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 40px;
+    color: white;
+  }

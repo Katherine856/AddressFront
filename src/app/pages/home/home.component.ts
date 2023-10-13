@@ -16,4 +16,8 @@ export class HomeComponent {
   new(){
     this.router.navigate(['/new-address']);
   }
+
+  load(){
+    this.router.navigate(['/bulk-load']);
+  }
 }

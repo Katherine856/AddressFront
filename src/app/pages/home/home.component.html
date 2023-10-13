@@ -1,3 +1,4 @@
+<app-header></app-header>
 <div class="home">
     <p-toolbar styleClass="Header">
         <div class="p-toolbar-group-start">
@@ -5,7 +6,7 @@
         </div>
         <div class="p-toolbar-group-end">
             <p-button icon="pi pi-plus" label="Nueva dirección" class="mr-2" styleClass="p-button-success" (onClick)="new()"></p-button>
-            <p-button icon="pi pi-file" label="Carga masiva" styleClass="p-button-success mr-2" type="button"></p-button>
+            <p-button icon="pi pi-file" label="Carga masiva" styleClass="p-button-success mr-2" type="button" (onClick)="load()"></p-button>
         </div>
     </p-toolbar>
     <ul>
@@ -14,3 +15,4 @@
         </li>
     </ul>
 </div>
+<app-footer></app-footer>

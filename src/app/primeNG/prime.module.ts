@@ -8,6 +8,14 @@ import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
 import { ToolbarModule } from 'primeng/toolbar';
 import { CardModule } from 'primeng/card';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { RippleModule } from 'primeng/ripple';
+import { ToastModule } from 'primeng/toast'; 
+import { MenubarModule } from 'primeng/menubar';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   declarations: [],
@@ -19,7 +27,15 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     DropdownModule,
     ToolbarModule,
-    CardModule
+    CardModule,
+    MultiSelectModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    MessageModule,
+    RippleModule,
+    ToastModule,
+    MenubarModule,
+    FileUploadModule
   ], 
   exports:[
     CommonModule,
@@ -29,7 +45,15 @@ import { CardModule } from 'primeng/card';
     ButtonModule,
     DropdownModule,
     ToolbarModule,
-    CardModule
+    CardModule,
+    MultiSelectModule,
+    ConfirmDialogModule,
+    MessagesModule,
+    MessageModule,
+    RippleModule,
+    ToastModule,
+    MenubarModule,
+    FileUploadModule
   ]
 })
 export class PrimeModule { }
