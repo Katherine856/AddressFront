@@ -1,3 +1,12 @@
-.color-button-no{
-    background-color: red;
+.detail{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin-bottom: 20px;
+    label{
+        margin: 5px 5px;
+    }
+}
+.map{
+    padding: 0 10px;
+    height: 300px;
 }

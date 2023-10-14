@@ -20,6 +20,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { EditComponent } from './pages/edit/edit.component';
 import { BulkLoadComponent } from './pages/bulk-load/bulk-load.component';
+import { MapComponent } from './components/map/map.component';
+import { FormComponent } from './components/form/form.component';
 
 const initializeAppFactory = (primeConfig: PrimeNGConfig) => () => {
   primeConfig.ripple = true;
@@ -35,7 +37,9 @@ const initializeAppFactory = (primeConfig: PrimeNGConfig) => () => {
     HeaderComponent,
     FooterComponent,
     EditComponent,
-    BulkLoadComponent
+    BulkLoadComponent,
+    MapComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

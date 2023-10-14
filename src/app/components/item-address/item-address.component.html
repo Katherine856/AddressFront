@@ -3,6 +3,24 @@
         {{name}}
     </div>
     <div class="p-toolbar-group-end">
+        <div class="card flex justify-content-center">
+            <p-button (click)="showDialog()" icon="pi pi-eye" styleClass="p-button-success mr-2"></p-button>
+            <p-dialog header="Detalles de la dirección" [(visible)]="visible" [style]="{width: '50vw'}">
+                <div class="detail">
+                    <label>Pais: {{name}} </label>
+                    <label>División geografica: {{name}} </label>
+                    <label>Dirección: {{name}} </label>
+                    <label>Conjunto: {{name}} </label>
+                    <label>Edificio: {{name}} </label>
+                    <label>Pais: {{name}} </label>
+                    <label>Pais: {{name}} </label>
+                    <label>Pais: {{name}} </label>
+                </div>
+                <div class="map">
+                    <app-map [lat]="4" [lng]="-74" [draggableNew]="false" [heightNew]="'300px'"></app-map>
+                </div>
+            </p-dialog>
+        </div>
         <p-button icon="pi pi-pencil" label="Editar" class="mr-2" (onClick)="edit()"></p-button>
         <div class="card flex justify-content-center">
             <p-toast position="top-right" key="topright"></p-toast>

@@ -13,8 +13,13 @@ export class ItemAddressComponent {
   @Input() name!: String;
 
   constructor(private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService){
-
   }
+
+  visible: boolean = false;
+
+    showDialog() {
+        this.visible = true;
+    }
 
   edit(){
     this.router.navigate(['/edit']);

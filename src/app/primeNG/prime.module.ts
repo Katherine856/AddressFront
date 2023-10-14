@@ -16,6 +16,7 @@ import { RippleModule } from 'primeng/ripple';
 import { ToastModule } from 'primeng/toast'; 
 import { MenubarModule } from 'primeng/menubar';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   declarations: [],
@@ -35,7 +36,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     RippleModule,
     ToastModule,
     MenubarModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ], 
   exports:[
     CommonModule,
@@ -53,7 +55,8 @@ import { FileUploadModule } from 'primeng/fileupload';
     RippleModule,
     ToastModule,
     MenubarModule,
-    FileUploadModule
+    FileUploadModule,
+    DialogModule
   ]
 })
 export class PrimeModule { }

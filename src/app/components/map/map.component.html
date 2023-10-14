@@ -1,0 +1,3 @@
+<google-map height={{height}} width="100%" [zoom]="zoom" [center]="center" [options]="options" (mapClick)="getGeo($event)">
+    <map-marker [position]="markerPosition" [options]="marker" (mapClick)="getGeo($event)"></map-marker>
+</google-map>

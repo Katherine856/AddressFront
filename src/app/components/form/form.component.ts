@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
@@ -9,13 +9,13 @@ interface City {
 }
 
 @Component({
-  selector: 'app-new-address',
-  templateUrl: './new-address.component.html',
-  styleUrls: ['./new-address.component.scss'],
-  providers: [ConfirmationService, MessageService]
+  selector: 'app-form',
+  templateUrl: './form.component.html',
+  styleUrls: ['./form.component.scss']
 })
-
-export class NewAddressComponent {
+export class FormComponent implements OnInit{
+  
+  @Input() type!: string;
 
   value: string | undefined;
   cities: City[] | undefined;
@@ -76,7 +76,4 @@ export class NewAddressComponent {
   return() {
     this.router.navigate(['/home']);
   }
-
-
-
 }

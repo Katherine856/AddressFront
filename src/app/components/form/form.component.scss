@@ -1,0 +1,34 @@
+@use '../../../assets/shared/funciones';
+@import '../../../assets/shared/colores';
+
+:host ::ng-deep {
+    .Item {
+        width: 95%
+    }
+}
+
+.form-container {
+    @include funciones.form(50% 50%);
+
+    span {
+        margin: 15px auto;
+        input{
+            width: 95%;
+        }
+    }
+}
+
+.button {
+    display: flex;
+    justify-content: space-around;
+    gap: 20px;
+    margin-bottom: 20px;
+    .color-button-no{
+        background-color: red;
+    }
+}
+
+.map{
+    padding: 0 100px;
+    margin-bottom: 20px;
+}
