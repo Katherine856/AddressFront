@@ -2,15 +2,15 @@
     <div class="form-container">
         <div clas="field">
             <span class="p-float-label ">
-                <p-dropdown styleClass="Item" formControlName="country" [options]="cities"
-                    optionLabel="name"></p-dropdown>
+                <p-dropdown styleClass="Item" formControlName="country" [options]="country"
+                    optionLabel="nameCountry" [(ngModel)]="this.formGroup.value.country"></p-dropdown>
                 <label htmlFor="country">Pais</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label ">
-                <p-dropdown styleClass="Item" formControlName="division" [options]="cities"
-                    optionLabel="name"></p-dropdown>
+                <p-dropdown styleClass="Item" formControlName="division" [options]="geoDiv"
+                    optionLabel="nameGeographicalDivision"></p-dropdown>
                 <label htmlFor="division">División geografica</label>
             </span>
         </div>
@@ -52,14 +52,14 @@
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <p-multiSelect [options]="cities" formControlName="products" optionLabel="name"
+                <p-multiSelect [options]="products" formControlName="products" optionLabel="nameProduct_Service"
                     styleClass="Item"></p-multiSelect>
                 <label htmlFor="products">Productos</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <p-multiSelect [options]="cities" formControlName="services" optionLabel="name"
+                <p-multiSelect [options]="services" formControlName="services" optionLabel="nameProduct_Service"
                     styleClass="Item"></p-multiSelect>
                 <label htmlFor="services">Servicios</label>
             </span>
