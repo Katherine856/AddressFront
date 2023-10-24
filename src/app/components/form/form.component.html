@@ -1,72 +1,72 @@
-<form [formGroup]="formGroup" (ngSubmit)="crear()">
+<form [formGroup]="formGroup">
     <div class="form-container">
         <div clas="field">
             <span class="p-float-label ">
                 <p-dropdown styleClass="Item" formControlName="country" [options]="country"
-                    optionLabel="nameCountry" [(ngModel)]="this.formGroup.value.country"></p-dropdown>
+                    optionLabel="nameCountry" [(ngModel)]="this.formGroup.value.country" ></p-dropdown>
                 <label htmlFor="country">Pais</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label ">
                 <p-dropdown styleClass="Item" formControlName="division" [options]="geoDiv"
-                    optionLabel="nameGeographicalDivision"></p-dropdown>
+                    optionLabel="nameGeographicalDivision" [(ngModel)]="this.formGroup.value.division"></p-dropdown>
                 <label htmlFor="division">División geografica</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <input pInputText id="address" formControlName="address" autocomplete="off" styleClass="Item" />
+                <input pInputText id="address" formControlName="address" autocomplete="off" styleClass="Item" [(ngModel)]="this.formGroup.value.address"/>
                 <label htmlFor="address">Direción</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <input pInputText id="residential" formControlName="residential" autocomplete="off" />
+                <input pInputText id="residential" formControlName="residential" autocomplete="off" [(ngModel)]="this.formGroup.value.residential"/>
                 <label htmlFor="residential">Conjunto</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <input pInputText id="building" formControlName="building" autocomplete="off" />
+                <input pInputText id="building" formControlName="building" autocomplete="off" [(ngModel)]="this.formGroup.value.building"/>
                 <label htmlFor="building">Edificio</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <input pInputText id="tower" formControlName="tower" autocomplete="off" />
+                <input pInputText id="tower" formControlName="tower" autocomplete="off" [(ngModel)]="this.formGroup.value.tower"/>
                 <label htmlFor="tower">Torre</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <input pInputText id="integer" pKeyFilter="int" formControlName="floor" autocomplete="off" />
+                <input pInputText id="integer" pKeyFilter="int" formControlName="floor" autocomplete="off" [(ngModel)]="this.formGroup.value.floor"/>
                 <label htmlFor="floor">Piso</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
-                <input pInputText id="apartment" formControlName="apartment" autocomplete="off" />
+                <input pInputText id="apartment" formControlName="apartment" autocomplete="off" [(ngModel)]="this.formGroup.value.apartment"/>
                 <label htmlFor="apartment">Apartamento</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
                 <p-multiSelect [options]="products" formControlName="products" optionLabel="nameProduct_Service"
-                    styleClass="Item"></p-multiSelect>
+                    styleClass="Item" [(ngModel)]="this.formGroup.value.products"></p-multiSelect>
                 <label htmlFor="products">Productos</label>
             </span>
         </div>
         <div clas="field">
             <span class="p-float-label">
                 <p-multiSelect [options]="services" formControlName="services" optionLabel="nameProduct_Service"
-                    styleClass="Item"></p-multiSelect>
+                    styleClass="Item" [(ngModel)]="this.formGroup.value.services"></p-multiSelect>
                 <label htmlFor="services">Servicios</label>
             </span>
         </div>
     </div>
     <div class="map">
-        <app-map [lat]="4" [lng]="-74" [draggableNew]="true" [heightNew]="'500px'"></app-map>
+        <app-map [lat]="4" [lng]="-74" [draggableNew]="true" [heightNew]="'500px'" (newEventLat)="receiveLat($event)" (newEventLng)="receiveLng($event)"></app-map>
     </div>
     <div class="button">
         <div class="card flex justify-content-center">
@@ -87,7 +87,7 @@
                         (click)="cd.accept()"></button>
                 </ng-template>
             </p-confirmDialog>
-            <p-button (click)="confirm1()" type="submit" styleClass="p-button-success center">{{type}}</p-button>
+            <p-button (click)="confirm1()" type="submit" styleClass="p-button-success center" [disabled]="formGroup.invalid" >{{type}}</p-button>
         </div>
         <p-button type="submit" styleClass="p-button-success center" (onClick)="return()">Volver</p-button>
     </div>

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-map',
@@ -11,6 +12,9 @@ export class MapComponent implements OnInit{
   @Input() lng!: number;
   @Input() draggableNew!: boolean;
   @Input() heightNew!: string;
+
+  @Output() newEventLat = new EventEmitter<number>();
+  @Output() newEventLng = new EventEmitter<number>();
   
   ngOnInit(): void {
     this.options.center = {lat: this.lat, lng: this.lng}
@@ -43,6 +47,8 @@ export class MapComponent implements OnInit{
     if(this.marker.draggable == true){
       let newGeo = event.latLng?.toJSON()
       this.markerPosition = { lat: newGeo?.lat ?? 0, lng: newGeo?.lng ?? 0}
+      this.newEventLat.emit(newGeo?.lat)
+      this.newEventLng.emit(newGeo?.lng)
     }
   }
 }

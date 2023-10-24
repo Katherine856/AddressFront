@@ -3,11 +3,19 @@
     <div class="load">
         <div class="load-contenido">
             <h1>Carga Masiva</h1>
-            <div class="card flex justify-content-center">
+            <form>
                 <p-toast position="top-right" key="topright"></p-toast>
-                <p-fileUpload mode="basic" chooseLabel="Subir archivo" [auto]="true" name="demo[]" url="" accept=".txt" (onUpload)="onBasicUploadAuto($event)"></p-fileUpload>
-            </div>
+                <div class="file-input-container">
+                    <label for="file-input" class="file-label">
+                        <span>Seleccionar archivo</span>
+                        <input type="file" id="file-input" class="inputfile" accept=".txt"
+                            (change)="onUpload($event)" />
+                    </label>
+                    <span id="selected-file-name" class="selected-file-name">{{selectedFileName}}</span>
+                </div>
+            </form>
         </div>
+        <p-button type="submit" styleClass="p-button-success" (onClick)="save()">Crear direcciones</p-button>
         <p-button type="submit" styleClass="p-button-success" (onClick)="return()">Volver</p-button>
     </div>
 </div>

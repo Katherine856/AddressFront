@@ -12,13 +12,56 @@
         background-color: $gris;
         display: flex;
         flex-direction: column;
+
         &-contenido {
             @include funciones.body-cont;
-            .card{
-                margin-top: 10px;
+
+            form{
+                display: flex;
+                margin: 20px auto;
+
+                .file-input-container {
+                    display: inline-block;
+                    position: relative;
+                }
+    
+                .file-label {
+                    background-color: #007bff;
+                    color: #fff;
+                    padding: 10px 20px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    display: flex;
+                    overflow: hidden;
+                }
+    
+                .inputfile {
+                    width: 0.1px;
+                    height: 0.1px;
+                    opacity: 0;
+                    overflow: hidden;
+                    position: absolute;
+                    z-index: -1;
+                }
+    
+                .inputfile+.file-label span::after {
+                    content: 'Seleccionar archivo';
+                    display: block;
+                }
+    
+                .inputfile:focus+.file-label {
+                    background-color: #0056b3;
+                }
+    
+                .selected-file-name {
+                    display: block;
+                    margin-top: 10px;
+                    font-weight: bold;
+                }
             }
         }
-        p-button{
+
+        p-button {
             margin: 20px auto;
         }
 

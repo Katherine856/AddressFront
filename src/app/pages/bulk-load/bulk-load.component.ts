@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-
-interface UploadEvent {
-    originalEvent: Event;
-    files: File[];
-}
+import { Server } from 'src/app/share/server/server.service';
+import { Message } from 'primeng/api';
+import { UploadEvent } from 'primeng/fileupload';
 
 @Component({
   selector: 'app-bulk-load',
@@ -14,18 +12,41 @@ interface UploadEvent {
   providers: [MessageService]
 })
 export class BulkLoadComponent {
-    constructor(private messageService: MessageService, private router: Router) {}
 
-    onBasicUploadAuto(event: any) {
-      if ( event.files.length >0 ){
-        const file = event.files[0];
-        const formData = new FormData();
-        formData.append('file',file);
-      }
-      this.messageService.add({ severity: 'info', summary: 'Success', detail: 'File Uploaded with Auto Mode' });
+  file: File;
+  corret: any;
+  selectedFileName: string = '';
+
+  constructor(private messageService: MessageService, private router: Router, private server: Server) { }
+
+  onUpload(event: any) {
+
+    this.file = event.target.files[0];
+
+    const fileInput = event.target;
+    if (fileInput.files.length > 0) {
+      this.selectedFileName = `Archivo seleccionado: ${fileInput.files[0].name}`;
+    } else {
+      this.selectedFileName = '';
+    }
+    this.messageService.add({
+      key: 'topright',
+      severity: 'info',
+      summary: 'File Uploaded',
+      detail: 'File uploaded successfully',
+    });
   }
 
-  return(){
+  save() {
+    this.server.upload(this.file).subscribe(data => {
+      this.corret = data
+    })
+    if(this.corret){
+      this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmed', detail: 'Transacción exitosa' });
+    }
+  }
+
+  return() {
     this.router.navigate(['/home']);
   }
 }

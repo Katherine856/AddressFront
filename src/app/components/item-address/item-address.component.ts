@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
+import { Server } from 'src/app/share/server/server.service';
 
 @Component({
   selector: 'app-item-address',
@@ -11,8 +12,9 @@ import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/a
 export class ItemAddressComponent {
 
   @Input() name!: String;
+  @Input() address!: any;
 
-  constructor(private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService){
+  constructor(private router: Router, private confirmationService: ConfirmationService, private messageService: MessageService, private servidor: Server){
   }
 
   visible: boolean = false;
@@ -22,13 +24,21 @@ export class ItemAddressComponent {
     }
 
   edit(){
-    this.router.navigate(['/edit']);
+    this.router.navigate(['/edit', this.address.idAddress]);
+  }
+
+  delete(){
+    this.servidor.deleteAddress(this.address.idAddress).subscribe(data => {
+      this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+    }, error =>{
+      this.messageService.add({ key: 'topright', severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+    })
   }
 
   confirm1() {
     this.confirmationService.confirm({
       accept: () => {
-        this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
+        this.delete()
       },
       reject: (type: ConfirmEventType) => {
         switch (type) {

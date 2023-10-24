@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'new-address', component: NewAddressComponent},
   {path: 'home', component: HomeComponent},
-  {path: 'edit', component: EditComponent},
+  {path: 'edit/:id', component: EditComponent},
   {path: 'bulk-load', component: BulkLoadComponent}
 ];
 

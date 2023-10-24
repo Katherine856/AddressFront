@@ -10,8 +10,9 @@
                 <span class="p-float-label">
                     <p-password formControlName="password" autocomplete="off" [feedback]="false" ></p-password>
                     <label for="password">Contraseña</label>
-                </span>
+                </span>  
                 <p-button type="submit" [disabled]="formGroup.invalid" styleClass="p-button-success">Ingresar</p-button>
+                <p-messages [(value)]="messages" [enableService]="true" [showTransitionOptions]="'500ms'" [hideTransitionOptions]="'500ms'"></p-messages>
             </form>
         </div>
     </div>
