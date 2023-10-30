@@ -17,6 +17,7 @@ import { ToastModule } from 'primeng/toast';
 import { MenubarModule } from 'primeng/menubar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [],
@@ -37,7 +38,8 @@ import { DialogModule } from 'primeng/dialog';
     ToastModule,
     MenubarModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    PaginatorModule
   ], 
   exports:[
     CommonModule,
@@ -56,7 +58,8 @@ import { DialogModule } from 'primeng/dialog';
     ToastModule,
     MenubarModule,
     FileUploadModule,
-    DialogModule
+    DialogModule,
+    PaginatorModule
   ]
 })
 export class PrimeModule { }

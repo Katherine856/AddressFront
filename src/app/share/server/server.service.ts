@@ -11,12 +11,12 @@ import { Credentials } from '../models/credentials';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 
 export class Server {
 
-    url = environment.apiUrl; 
+    url = environment.apiUrl;
 
     constructor(private httpClient: HttpClient) { }
 
@@ -24,39 +24,39 @@ export class Server {
         return this.httpClient.post(this.url + 'address/login', credentials);
     }
 
-    getCountrys(): Observable<Country>{
+    getCountrys(): Observable<Country> {
         return this.httpClient.get<Country>(this.url + 'country/all');
     }
 
-    getGeoDiv(id_Country: number): Observable<GeographicalDivision>{
+    getGeoDiv(id_Country: number): Observable<GeographicalDivision> {
         return this.httpClient.get<GeographicalDivision>(this.url + `geographicaldivision/all/${id_Country}`);
     }
 
-    getProducts(): Observable<Product_Service>{
+    getProducts(): Observable<Product_Service> {
         return this.httpClient.get<Product_Service>(this.url + 'product_service/all/products');
     }
 
-    getServices(): Observable<Product_Service>{
+    getServices(): Observable<Product_Service> {
         return this.httpClient.get<Product_Service>(this.url + 'product_service/all/services');
     }
 
-    createAddress(address: Address): Observable<Address>{
-      return this.httpClient.post<Address>(this.url + 'address/create', address);
+    createAddress(address: Address): Observable<Address> {
+        return this.httpClient.post<Address>(this.url + 'address/create', address);
     }
 
-    getAddresses(): Observable<Address>{
+    getAddresses(): Observable<Address> {
         return this.httpClient.get<Address>(this.url + 'address/all');
     }
 
-    updateAddress(idAddress: number, idUser: number, address: Address): Observable<Address>{
-      return this.httpClient.put<Address>(this.url + `address/update/${idAddress}/${idUser}`, address);
+    updateAddress(idAddress: number, idUser: number, address: Address): Observable<Address> {
+        return this.httpClient.put<Address>(this.url + `address/update/${idAddress}/${idUser}`, address);
     }
 
-    getAddress(idAddress: number): Observable<Address>{
+    getAddress(idAddress: number): Observable<Address> {
         return this.httpClient.get<Address>(this.url + `address/${idAddress}`);
     }
 
-    deleteAddress(idAddress: number) {
+    deleteAddress(idAddress: number): Observable<any> {
         return this.httpClient.delete(this.url + `address/delete/${idAddress}`);
     }
 
@@ -66,9 +66,13 @@ export class Server {
         formData.append('addresses', archivo);
         //Se crea el HttpRequest con la configuración necesaria para la carga del archivo de tipo MultipartFile
         const post = new HttpRequest('POST', this.url + 'address/massiveAddresses', formData, {
-          reportProgress: true,
-          responseType: 'json'
+            reportProgress: true,
+            responseType: 'json'
         });
         return this.httpClient.request(post);
+    }
+
+    logout() {
+        localStorage.clear();
     }
 }

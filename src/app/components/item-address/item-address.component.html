@@ -10,6 +10,7 @@
                 <div class="detail">
                     <label>Pais: {{address.geographicalDivision.country.nameCountry}} </label>
                     <label>División geografica: {{address.geographicalDivision.nameGeographicalDivision}} </label>
+                    <label>Zona horaria: {{address.geographicalDivision.timeZone}} </label>
                     <label>Dirección: {{address.infoAddress}} </label>
                     <label>Conjunto: {{address.residential}} </label>
                     <label>Edificio: {{address.building}} </label>
@@ -32,7 +33,7 @@
                 <ng-template pTemplate="icon">
                 </ng-template>
                 <ng-template pTemplate="message">
-                    <p>¿Esta seguro de añadir esta dirección?</p>
+                    <p>¿Esta seguro de eliminar esta dirección?</p>
                 </ng-template>
                 <ng-template pTemplate="footer">
                     <button type="button" pButton icon="pi pi-times" label="Cancelar" class="color-button-no"
@@ -41,7 +42,7 @@
                         (click)="cd.accept()"></button>
                 </ng-template>
             </p-confirmDialog>
-            <p-button icon="pi pi-delete-left" label="Eliminar" class="mr-2" (onClick)="confirm1()" styleClass="p-button-danger"></p-button>
+            <p-button *ngIf="this.typeRol === 'Administrador'" icon="pi pi-delete-left" label="Eliminar" class="mr-2" (onClick)="confirm1()" styleClass="p-button-danger"></p-button>
         </div>
     </div>
 </p-toolbar>

@@ -6,13 +6,16 @@
         </div>
         <div class="p-toolbar-group-end">
             <p-button icon="pi pi-plus" label="Nueva dirección" class="mr-2" styleClass="p-button-success" (onClick)="new()"></p-button>
-            <p-button icon="pi pi-file" label="Carga masiva" styleClass="p-button-success mr-2" type="button" (onClick)="load()"></p-button>
+            <p-button *ngIf="this.typeRol === 'Administrador'" icon="pi pi-file" label="Carga masiva" styleClass="p-button-success mr-2" type="button" (onClick)="load()"></p-button>
         </div>
     </p-toolbar>
     <ul>
-        <li *ngFor="let address of addresses">
-            <app-item-address [address]="address"></app-item-address>
+        <li *ngFor="let address of addresses.slice(first, first+rows)">
+            <app-item-address [address]="address" (itemDelete)="refreshData()"></app-item-address>
         </li>
     </ul>
+    <p-paginator [rows]="rows" [totalRecords]="addresses.length" [first]="first" (onPageChange)="paginate($event)"></p-paginator>
 </div>
+
+
 <app-footer></app-footer>

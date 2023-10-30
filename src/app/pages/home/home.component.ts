@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable, delay, take } from 'rxjs';
 import { Server } from 'src/app/share/server/server.service';
 
 @Component({
@@ -8,16 +9,19 @@ import { Server } from 'src/app/share/server/server.service';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit{
-  names: string[];
-
   addresses: any;
 
+  typeRol = JSON.parse(localStorage.getItem('type') || '{}');
+
+  first: number = 0;
+
+  rows: number = 10;
+
   constructor(private router: Router, private server: Server){
-    this.names = ['Hola', 'Como', 'Estas?']
   }
 
   ngOnInit(): void {
-    this.getAddress()
+    this.getAddress();
   }
 
   new(){
@@ -33,4 +37,14 @@ export class HomeComponent implements OnInit{
       this.addresses = data;
     })
   }
+
+  refreshData(){
+    this.getAddress();
+  }
+
+  paginate(event: any) {
+    this.first = event.first;
+    this.getAddress()
+  }
+  
 }

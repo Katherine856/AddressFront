@@ -3,6 +3,31 @@
     <div class="load">
         <div class="load-contenido">
             <h1>Carga Masiva</h1>
+            <div class="card flex justify-content-center">
+                <p-button (click)="showDialog()" label="Ver especificaciones del archivo" styleClass="p-button-success"></p-button>
+                <p-dialog header="Descripción carga masiva" [(visible)]="visible" [style]="{width: '50vw'}">
+                    <ol style="margin-top: 0px;">
+                        <li>El archivo <strong>DEBE</strong> estar en formato <strong>.txt</strong></li>
+                        <li>Todos los campos deberán ir separados por punto y comas.</li>
+                        <li>Evita dejar espacio entre las punto y comas.</li>
+                        <li>Cada dirección deberá ir en una línea distinta.</li>
+                        <li>Evita dejar espacios vacíos antes o después de cada línea.</li>
+                        <li>Evita dejar alguna línea vacía antes del primer registro.</li>
+                        <li>Evita dejar alguna línea vacía después del último registro.</li>
+                        <li>Si deseas crear una dirección, el campo correspondiente al ID de la dirección,
+                            <br> deberá ir con 'null' (Sin comillas).
+                        </li>
+                        <li>Si deseas editar una dirección existente, es necesario que indiques
+                            <br>el ID de la dirección que deseas modificar.
+                        </li>
+                        <li>Para el campo de productos y servicios, debe colocar los IDs separados por comas.</li>
+                    </ol>
+                    <h4 >La estructura correcta para la creación del archivo es:</h4>
+                    <h6 >ID DIRECCIÓN, DIVISIÓN GEOGRAFICA, DIRECCIÓN, LATITUD, LONGITUD, CONJUNTO, EDIFICIO, TORRE, PISO, APARTAMENTO, LISTA DE PRODUCTOS Y/O SERVICIOS</h6>
+                    <h4 class="texto">Ejemplo:</h4>
+                    <img src="https://i.ibb.co/YbNRF8v/Captura-de-pantalla-2023-10-30-153213.png" alt="Imagen Turnos">
+                </p-dialog>
+            </div>
             <form>
                 <p-toast position="top-right" key="topright"></p-toast>
                 <div class="file-input-container">
@@ -15,8 +40,10 @@
                 </div>
             </form>
         </div>
-        <p-button type="submit" styleClass="p-button-success" (onClick)="save()">Crear direcciones</p-button>
-        <p-button type="submit" styleClass="p-button-success" (onClick)="return()">Volver</p-button>
+        <div class="buttons">
+            <p-button type="submit" styleClass="p-button-success" (onClick)="save()">Crear direcciones</p-button>
+            <p-button type="submit" styleClass="p-button-success" (onClick)="return()">Volver</p-button>
+        </div>
     </div>
 </div>
 <app-footer></app-footer>

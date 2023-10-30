@@ -16,6 +16,7 @@ export class BulkLoadComponent {
   file: File;
   corret: any;
   selectedFileName: string = '';
+  visible: boolean = false;
 
   constructor(private messageService: MessageService, private router: Router, private server: Server) { }
 
@@ -36,6 +37,10 @@ export class BulkLoadComponent {
       detail: 'File uploaded successfully',
     });
   }
+
+  showDialog() {
+    this.visible = true;
+}
 
   save() {
     this.server.upload(this.file).subscribe(data => {

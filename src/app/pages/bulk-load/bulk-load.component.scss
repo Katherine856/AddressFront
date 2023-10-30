@@ -16,9 +16,13 @@
         &-contenido {
             @include funciones.body-cont;
 
+            p-button{
+                margin: 40px auto;
+            }
+
             form{
                 display: flex;
-                margin: 20px auto;
+                margin: 0 auto;
 
                 .file-input-container {
                     display: inline-block;
@@ -33,6 +37,8 @@
                     cursor: pointer;
                     display: flex;
                     overflow: hidden;
+                    height: 50px;
+                    align-items: center;
                 }
     
                 .inputfile {
@@ -46,7 +52,7 @@
     
                 .inputfile+.file-label span::after {
                     content: 'Seleccionar archivo';
-                    display: block;
+
                 }
     
                 .inputfile:focus+.file-label {
@@ -61,8 +67,14 @@
             }
         }
 
-        p-button {
-            margin: 20px auto;
+        .buttons {
+            margin: 5px auto;
+            display: flex;
+            margin-bottom: 50px;
+            flex-direction: column;
+            p-button{
+                margin: 5px auto;
+            }
         }
 
     }

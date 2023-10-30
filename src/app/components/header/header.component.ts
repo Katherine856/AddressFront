@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { Server } from 'src/app/share/server/server.service';
 
 @Component({
   selector: 'app-header',
@@ -8,11 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router){
+  constructor(private router: Router, public server: Server){
 
   }
 
   back(){
+    this.server.logout();
     this.router.navigate(['/']);
   }
 
