@@ -14,52 +14,68 @@ import { Credentials } from '../models/credentials';
     providedIn: 'root'
 })
 
-export class Server {
+export class Service {
 
-    url = environment.apiUrl;
+    url = environment.apiUrl; //Url de la API 
 
     constructor(private httpClient: HttpClient) { }
 
+    //Método para iniciar sesión
     login(credentials: Credentials) {
         return this.httpClient.post(this.url + 'address/login', credentials);
     }
 
+    //Método que permite traer TODOS los paises
     getCountrys(): Observable<Country> {
         return this.httpClient.get<Country>(this.url + 'country/all');
     }
 
+    //Método que permite traer las divisiones geograficas por pais
     getGeoDiv(id_Country: number): Observable<GeographicalDivision> {
         return this.httpClient.get<GeographicalDivision>(this.url + `geographicaldivision/all/${id_Country}`);
     }
 
+    //Método que permite traer TODOS los productos
     getProducts(): Observable<Product_Service> {
         return this.httpClient.get<Product_Service>(this.url + 'product_service/all/products');
     }
 
+    //Método que permite traer TODOS los servicios
     getServices(): Observable<Product_Service> {
         return this.httpClient.get<Product_Service>(this.url + 'product_service/all/services');
     }
 
+    //Método que permite crear una dirección
     createAddress(address: Address): Observable<Address> {
         return this.httpClient.post<Address>(this.url + 'address/create', address);
     }
 
+    //Método que permite traer TODAS las direcciones
     getAddresses(): Observable<Address> {
         return this.httpClient.get<Address>(this.url + 'address/all');
     }
 
+    //Método que permite actualizar UNA dirección
     updateAddress(idAddress: number, idUser: number, address: Address): Observable<Address> {
         return this.httpClient.put<Address>(this.url + `address/update/${idAddress}/${idUser}`, address);
     }
 
+    //Método que permite traer UNA dirección
     getAddress(idAddress: number): Observable<Address> {
         return this.httpClient.get<Address>(this.url + `address/${idAddress}`);
     }
 
+    //Método que permite traer las direcciones por pais
+    getAddressByCountry(idCountry: number): Observable<Address> {
+        return this.httpClient.get<Address>(this.url + `address/all/${idCountry}`);
+    }
+
+    //Método que permite eliminar UNA dirección
     deleteAddress(idAddress: number): Observable<any> {
         return this.httpClient.delete(this.url + `address/delete/${idAddress}`);
     }
 
+    //Método que permite crear o actualizar direcciones mediante un archivo
     upload(archivo: File): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();
         //Se agrega el archivo a la formData
@@ -72,6 +88,7 @@ export class Server {
         return this.httpClient.request(post);
     }
 
+    //Método que permite cerrar sesión
     logout() {
         localStorage.clear();
     }

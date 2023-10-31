@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Server } from 'src/app/share/server/server.service';
+import { Service } from 'src/app/share/server/server.service';
 
 @Component({
   selector: 'app-header',
@@ -9,7 +9,7 @@ import { Server } from 'src/app/share/server/server.service';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router, public server: Server){
+  constructor(private router: Router, public server: Service){
 
   }
 

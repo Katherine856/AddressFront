@@ -18,6 +18,7 @@ import { MenubarModule } from 'primeng/menubar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DialogModule } from 'primeng/dialog';
 import { PaginatorModule } from 'primeng/paginator';
+import { ListboxModule } from 'primeng/listbox';
 
 @NgModule({
   declarations: [],
@@ -39,7 +40,8 @@ import { PaginatorModule } from 'primeng/paginator';
     MenubarModule,
     FileUploadModule,
     DialogModule,
-    PaginatorModule
+    PaginatorModule,
+    ListboxModule
   ], 
   exports:[
     CommonModule,
@@ -59,7 +61,8 @@ import { PaginatorModule } from 'primeng/paginator';
     MenubarModule,
     FileUploadModule,
     DialogModule,
-    PaginatorModule
+    PaginatorModule,
+    ListboxModule
   ]
 })
 export class PrimeModule { }

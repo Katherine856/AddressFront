@@ -2,7 +2,10 @@
 <div class="home">
     <p-toolbar styleClass="Header">
         <div class="p-toolbar-group-start">
-            
+            <form [formGroup]="formGroup">
+            <p-dropdown styleClass="Item" [options]="countrys" formControlName="country"
+                    optionLabel="nameCountry" [(ngModel)]="this.formGroup.value.country"></p-dropdown>
+            </form>
         </div>
         <div class="p-toolbar-group-end">
             <p-button icon="pi pi-plus" label="Nueva dirección" class="mr-2" styleClass="p-button-success" (onClick)="new()"></p-button>

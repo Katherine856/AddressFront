@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
-import { Server } from 'src/app/share/server/server.service';
-import { Message } from 'primeng/api';
-import { UploadEvent } from 'primeng/fileupload';
+import { Service } from 'src/app/share/server/server.service';
 
 @Component({
   selector: 'app-bulk-load',
@@ -13,23 +11,26 @@ import { UploadEvent } from 'primeng/fileupload';
 })
 export class BulkLoadComponent {
 
-  file: File;
-  corret: any;
-  selectedFileName: string = '';
-  visible: boolean = false;
+  file: File; //Archivo
+  corret: any; //Exito de la transacción
+  selectedFileName: string = ''; //Nombre del archivo seleccionado
+  visible: boolean = false; //Visivilizar la información de la estructura del archivo
 
-  constructor(private messageService: MessageService, private router: Router, private server: Server) { }
+  constructor(private messageService: MessageService, private router: Router, private server: Service) { }
 
+  //Subida del archivo
   onUpload(event: any) {
 
-    this.file = event.target.files[0];
+    this.file = event.target.files[0]; //Asignar el archivo a la variable
 
     const fileInput = event.target;
     if (fileInput.files.length > 0) {
-      this.selectedFileName = `Archivo seleccionado: ${fileInput.files[0].name}`;
+      this.selectedFileName = `Archivo seleccionado: ${fileInput.files[0].name}`; //Mostrar el nombre del archivo subido
     } else {
       this.selectedFileName = '';
     }
+
+    //Confirmar la subida del archivo
     this.messageService.add({
       key: 'topright',
       severity: 'info',
@@ -40,8 +41,9 @@ export class BulkLoadComponent {
 
   showDialog() {
     this.visible = true;
-}
+  }
 
+  //Guardar el archivo
   save() {
     this.server.upload(this.file).subscribe(data => {
       this.corret = data

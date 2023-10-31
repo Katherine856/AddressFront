@@ -5,6 +5,7 @@
                 <p-dropdown styleClass="Item" formControlName="country" [options]="country"
                     optionLabel="nameCountry" [(ngModel)]="this.formGroup.value.country" ></p-dropdown>
                 <label htmlFor="country">Pais</label>
+                <p-message severity="error" text="{{ errorMessages.country.required }}" *ngIf="formGroup.get('country')?.hasError('required')"></p-message>
             </span>
         </div>
         <div clas="field">
@@ -12,6 +13,7 @@
                 <p-dropdown styleClass="Item" formControlName="division" [options]="geoDiv"
                     optionLabel="nameGeographicalDivision" [(ngModel)]="this.formGroup.value.division"></p-dropdown>
                 <label htmlFor="division">División geografica</label>
+                <p-message severity="error" text="{{ errorMessages.division.required }}" *ngIf="formGroup.get('division')?.hasError('required')"></p-message>
             </span>
         </div>
         <div clas="field">
@@ -19,6 +21,7 @@
                 <input pInputText id="address" formControlName="address" autocomplete="off" styleClass="Item" [(ngModel)]="this.formGroup.value.address"/>
                 <label htmlFor="address">Direción</label>
             </span>
+            <p-message severity="error" text="{{ errorMessages.address.required }}" *ngIf="formGroup.get('address')?.hasError('required')"></p-message>
         </div>
         <div clas="field">
             <span class="p-float-label">
@@ -37,18 +40,24 @@
                 <input pInputText id="tower" formControlName="tower" autocomplete="off" [(ngModel)]="this.formGroup.value.tower"/>
                 <label htmlFor="tower">Torre</label>
             </span>
+            <p-message severity="error" text="{{ errorMessages.tower.minlength }}" *ngIf="formGroup.get('tower')?.hasError('minlength')"></p-message>
+            <p-message severity="error" text="{{ errorMessages.tower.maxlength }}" *ngIf="formGroup.get('tower')?.hasError('maxlength')"></p-message>
         </div>
         <div clas="field">
             <span class="p-float-label">
                 <input pInputText id="integer" pKeyFilter="int" formControlName="floor" autocomplete="off" [(ngModel)]="this.formGroup.value.floor"/>
                 <label htmlFor="floor">Piso</label>
             </span>
+            <p-message severity="error" text="{{ errorMessages.floor.minlength }}" *ngIf="formGroup.get('floor')?.hasError('minlength')"></p-message>
+            <p-message severity="error" text="{{ errorMessages.floor.maxlength }}" *ngIf="formGroup.get('floor')?.hasError('maxlength')"></p-message>
         </div>
         <div clas="field">
             <span class="p-float-label">
                 <input pInputText id="apartment" formControlName="apartment" autocomplete="off" [(ngModel)]="this.formGroup.value.apartment"/>
                 <label htmlFor="apartment">Apartamento</label>
             </span>
+            <p-message severity="error" text="{{ errorMessages.apartment.minlength }}" *ngIf="formGroup.get('apartment')?.hasError('minlength')"></p-message>
+    <p-message severity="error" text="{{ errorMessages.apartment.maxlength }}" *ngIf="formGroup.get('apartment')?.hasError('maxlength')"></p-message>
         </div>
         <div clas="field">
             <span class="p-float-label">
@@ -87,7 +96,7 @@
                         (click)="cd.accept()"></button>
                 </ng-template>
             </p-confirmDialog>
-            <p-button (click)="confirm1()" type="submit" styleClass="p-button-success center" [disabled]="formGroup.invalid" >{{type}}</p-button>
+            <p-button (click)="confirm()" type="submit" styleClass="p-button-success center" [disabled]="formGroup.invalid" >{{type}}</p-button>
         </div>
         <p-button type="submit" styleClass="p-button-success center" (onClick)="return()">Volver</p-button>
     </div>

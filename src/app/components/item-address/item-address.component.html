@@ -17,6 +17,10 @@
                     <label>Torre: {{address.tower}} </label>
                     <label>Piso: {{address.floor}} </label>
                     <label>Apartamento: {{address.apartment}} </label>
+                    <label>Productos y servicios: 
+                    <ol *ngFor="let p_s of address.product_service">
+                        <li> {{p_s.nameProduct_Service}} </li>
+                    </ol></label>
                 </div>
                 <div class="map">
                     <app-map [lat]="address.latitude" [lng]="address.longitude" [draggableNew]="false" [heightNew]="'300px'"></app-map>
