@@ -22,6 +22,7 @@
                 <label htmlFor="address">Direción</label>
             </span>
             <p-message severity="error" text="{{ errorMessages.address.required }}" *ngIf="formGroup.get('address')?.hasError('required')"></p-message>
+            <p-message severity="error" text="{{ errorMessages.address.format }}" *ngIf="this.validFormat === false"></p-message>
         </div>
         <div clas="field">
             <span class="p-float-label">

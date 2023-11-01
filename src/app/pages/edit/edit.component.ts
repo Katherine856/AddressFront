@@ -12,6 +12,6 @@ export class EditComponent implements OnInit{
   constructor(private activateRoute: ActivatedRoute){}
 
   ngOnInit(): void {
-    this.idAddress = this.activateRoute.snapshot.paramMap.get('id'); //Traer el id de la dirección a editar
+    this.idAddress = this.activateRoute.snapshot.paramMap.get('id'); //Traer el id de la dirección
   }
 }

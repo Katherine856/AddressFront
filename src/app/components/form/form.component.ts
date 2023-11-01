@@ -8,12 +8,16 @@ import { Service } from 'src/app/share/server/server.service';
 @Component({
   selector: 'app-form',
   templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss']
+  styleUrls: ['./form.component.scss'],
+  providers: [ConfirmationService, MessageService]
+
 })
 export class FormComponent implements OnInit {
 
   @Input() type!: string;
   @Input() id!: number | null;
+
+  user: any;
 
   lat: number;
   lng: number;
@@ -22,6 +26,7 @@ export class FormComponent implements OnInit {
   products: any;
   services: any;
   addressActualy: any;
+  validFormat: any;
 
   formGroup!: FormGroup;
 
@@ -34,6 +39,7 @@ export class FormComponent implements OnInit {
     },
     address: {
       required: 'El campo dirección es obligatorio.',
+      format: 'El formato de la dirección es invalido.',
     },
     tower: {
       minlength: 'La torre debe tener al menos 1 carácter.',
@@ -66,14 +72,19 @@ export class FormComponent implements OnInit {
 
   ngOnInit() {
 
-    this.getCountrys(); 
+    this.getAddress(this.id || 0);
+
+    this.getCountrys();
 
     this.getProducts();
 
     this.getServices();
 
     this.formGroup.controls["country"].valueChanges.subscribe(data => {
-      this.getGeoDiv(data.idCountry); //Traer la division geografica según el pais seleccionado
+      this.getGeoDiv(data?.idCountry); //Traer la division geografica según el pais seleccionado
+      this.formGroup.controls["address"].valueChanges.subscribe(data2 => {
+        this.evaluateExpression(data?.format, data2)
+      });
     });
 
   }
@@ -140,17 +151,17 @@ export class FormComponent implements OnInit {
     }
 
     //Se realiza la opción indicada de acuerdo a el tipo de formulario
-    if (this.type == 'Añadir'){
+    if (this.type == 'Añadir') {
       this.create(address)
-    }else{
-      if(this.id != null){
+    } else {
+      if (this.id != null) {
         this.update(address, this.id)
       }
     }
-  } 
+  }
 
   //Médoto que permite crear una dirección
-  create(address: Address ){
+  create(address: Address) {
     this.servidor.createAddress(address).subscribe(
       data => {
         this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmación', detail: 'Transacción exitosa' });
@@ -161,13 +172,14 @@ export class FormComponent implements OnInit {
         else {
           this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmación', detail: 'Transacción exitosa' });
         }
-        
+
       })
   }
 
   //Médoto que permite actualizar una dirección
-  update(address: Address, id: number){
-    this.servidor.updateAddress(id, 12345, address).subscribe(
+  update(address: Address, id: number) {
+    this.user = JSON.parse(localStorage.getItem('user') || '{}'); //Tipo de usuario
+    this.servidor.updateAddress(id, parseInt(this.user), address).subscribe(
       data => {
         this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmed', detail: 'Transacción exitosa' });
       }, error => {
@@ -181,23 +193,35 @@ export class FormComponent implements OnInit {
   }
 
   //Método que trae una dirección para inicializar los valores del formulario
-  getAddress( id: number){
-    this.servidor.getAddress(id).subscribe(
-      data => {
-        this.addressActualy = data;
-        this.formGroup.setValue({
-          country: this.addressActualy.geographicalDivision.country,
-          division: this.addressActualy.geographicalDivision,
-          address: this.addressActualy.infoAddress,
-          residential: this.addressActualy.residential,
-          building: this.addressActualy.building,
-          tower: this.addressActualy.tower,
-          floor: this.addressActualy.floor,
-          apartment: this.addressActualy.apartment,
-          products: '',
-          services: '',
+  getAddress(id: number) {
+    if (id !== 0) {
+      this.servidor.getAddress(id).subscribe(
+        data => {
+          this.addressActualy = data;
+          this.formGroup.setValue({
+            country: this.addressActualy.geographicalDivision.country,
+            division: this.addressActualy.geographicalDivision,
+            address: this.addressActualy.infoAddress,
+            residential: this.addressActualy.residential,
+            building: this.addressActualy.building,
+            tower: this.addressActualy.tower,
+            floor: this.addressActualy.floor,
+            apartment: this.addressActualy.apartment,
+            products: '',
+            services: '',
+          })
         })
-      })
+    }
+  }
+
+  evaluateExpression(expre: string, text: string) {
+    // Expresión regular
+    if(expre){
+      const regex = new RegExp(expre);
+      this.validFormat = regex.test(text);
+      console.log(this.validFormat)
+    }
+
   }
 
   confirm() {

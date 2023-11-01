@@ -50,10 +50,10 @@ export class ItemAddressComponent {
       reject: (type: ConfirmEventType) => {
         switch (type) {
           case ConfirmEventType.REJECT:
-            this.messageService.add({ key: 'topright', severity: 'error', summary: 'Rejected', detail: 'You have rejected' });
+            this.messageService.add({ key: 'topright', severity: 'error', summary: 'Cancelada', detail: 'Transación cancelada' });
             break;
           case ConfirmEventType.CANCEL:
-            this.messageService.add({ key: 'topright', severity: 'warn', summary: 'Cancelled', detail: 'You have cancelled' });
+            this.messageService.add({ key: 'topright', severity: 'warn', summary: 'Error', detail: 'Hubo un error, intentalo nuevamente' });
             break;
         }
       }

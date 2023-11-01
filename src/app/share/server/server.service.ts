@@ -8,7 +8,7 @@ import { Country } from '../models/country';
 import { GeographicalDivision } from '../models/geographicalDivision';
 import { Product_Service } from '../models/product_service';
 import { Credentials } from '../models/credentials';
-
+import { Change } from '../models/change';
 
 @Injectable({
     providedIn: 'root'
@@ -73,6 +73,11 @@ export class Service {
     //Método que permite eliminar UNA dirección
     deleteAddress(idAddress: number): Observable<any> {
         return this.httpClient.delete(this.url + `address/delete/${idAddress}`);
+    }
+
+    //Método que permite traer UNA dirección
+    getChanges(): Observable<Change> {
+        return this.httpClient.get<Change>(this.url + `change/all`);
     }
 
     //Método que permite crear o actualizar direcciones mediante un archivo

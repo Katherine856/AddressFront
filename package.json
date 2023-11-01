@@ -1,4 +1,9 @@
 {
+  "browser": {
+    "fs": false,
+    "os": false,
+    "path": false
+  },
   "name": "address",
   "version": "0.0.0",
   "scripts": {
@@ -19,6 +24,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "jspdf": "^2.5.1",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primeng": "^16.5.0",
@@ -32,6 +38,7 @@
     "@angular/compiler-cli": "^16.2.0",
     "@types/google.maps": "^3.54.3",
     "@types/jasmine": "~4.3.0",
+    "@types/node": "^20.8.10",
     "jasmine-core": "~4.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
