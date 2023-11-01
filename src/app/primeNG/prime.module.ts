@@ -41,7 +41,7 @@ import { ListboxModule } from 'primeng/listbox';
     FileUploadModule,
     DialogModule,
     PaginatorModule,
-    ListboxModule
+    ListboxModule,
   ], 
   exports:[
     CommonModule,
@@ -62,7 +62,7 @@ import { ListboxModule } from 'primeng/listbox';
     FileUploadModule,
     DialogModule,
     PaginatorModule,
-    ListboxModule
+    ListboxModule,
   ]
 })
 export class PrimeModule { }

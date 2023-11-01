@@ -23,10 +23,6 @@ import { BulkLoadComponent } from './pages/bulk-load/bulk-load.component';
 import { MapComponent } from './components/map/map.component';
 import { FormComponent } from './components/form/form.component';
 
-const initializeAppFactory = (primeConfig: PrimeNGConfig) => () => {
-  primeConfig.ripple = true;
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,12 +48,7 @@ const initializeAppFactory = (primeConfig: PrimeNGConfig) => () => {
     HttpClientModule
   ],
   providers: [
-    {
-       provide: APP_INITIALIZER,
-       useFactory: initializeAppFactory,
-       deps: [PrimeNGConfig],
-       multi: true,
-    },
+    
  ],
   bootstrap: [AppComponent]
 })

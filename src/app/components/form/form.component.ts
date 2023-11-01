@@ -83,7 +83,7 @@ export class FormComponent implements OnInit {
     this.formGroup.controls["country"].valueChanges.subscribe(data => {
       this.getGeoDiv(data?.idCountry); //Traer la division geografica según el pais seleccionado
       this.formGroup.controls["address"].valueChanges.subscribe(data2 => {
-        this.evaluateExpression(data?.format, data2)
+        this.evaluateExpression(data?.format, data2) //Verificar el formato de la dirección
       });
     });
 
