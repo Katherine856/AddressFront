@@ -34,8 +34,8 @@ export class BulkLoadComponent {
     this.messageService.add({
       key: 'topright',
       severity: 'info',
-      summary: 'File Uploaded',
-      detail: 'File uploaded successfully',
+      summary: 'Archivo subbido',
+      detail: 'El archivo se ha subido satisfactoriamente',
     });
   }
 

@@ -1,12 +1,14 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Service } from 'src/app/share/server/server.service';
+import { ConfirmationService, MessageService, ConfirmEventType } from 'primeng/api';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+  styleUrls: ['./home.component.scss'],
+  providers: [ConfirmationService, MessageService]
 })
 export class HomeComponent implements OnInit{
 
@@ -20,7 +22,7 @@ export class HomeComponent implements OnInit{
   first: number = 0; //Página inicial
   rows: number = 10; //Cantidad de filas por página
 
-  constructor(private fb: FormBuilder, private router: Router, private service: Service){
+  constructor(private fb: FormBuilder, private router: Router, private service: Service, private confirmationService: ConfirmationService, private messageService: MessageService){
     this.formGroup = this.fb.group({
       country: ['', [Validators.required]]
     });
@@ -81,5 +83,34 @@ export class HomeComponent implements OnInit{
     this.first = event.first;
     this.getAddress();
   }
+
+  //Método que permite eliminar todas las direcciones
+  deleteAll(){
+    this.service.deleteAllAddress().subscribe(data => {
+      setTimeout(()=>{
+        this.messageService.add({ key: 'topright', severity: 'info', summary: 'Confirmado', detail: 'Las direcciones fueron eliminadas con exito' });
+        this.refreshData();
+      }, 1000); //Poner un delay para que se vea el mensaje de confirmación
+    }, error => {
+      this.messageService.add({ key: 'topright', severity: 'error', summary: 'Error', detail: 'No se pudo eliminar' });
+    })
+  }
   
+  confirm() {
+    this.confirmationService.confirm({
+      accept: () => {
+        this.deleteAll();
+      },
+      reject: (type: ConfirmEventType) => {
+        switch (type) {
+          case ConfirmEventType.REJECT:
+            this.messageService.add({ key: 'topright', severity: 'error', summary: 'Cancelada', detail: 'Transación cancelada' });
+            break;
+          case ConfirmEventType.CANCEL:
+            this.messageService.add({ key: 'topright', severity: 'warn', summary: 'Error', detail: 'Hubo un error, intentalo nuevamente' });
+            break;
+        }
+      }
+    });
+  }
 }

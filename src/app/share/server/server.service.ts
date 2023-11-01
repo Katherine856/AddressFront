@@ -80,6 +80,11 @@ export class Service {
         return this.httpClient.get<Change>(this.url + `change/all`);
     }
 
+    //Método que elimina todas las direcciones
+    deleteAllAddress() {
+        return this.httpClient.get(this.url + `address/delete/all`);
+    }
+
     //Método que permite crear o actualizar direcciones mediante un archivo
     upload(archivo: File): Observable<HttpEvent<any>> {
         const formData: FormData = new FormData();

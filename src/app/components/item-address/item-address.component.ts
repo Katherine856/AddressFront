@@ -42,7 +42,7 @@ export class ItemAddressComponent {
     })
   }
 
-  confirm1() {
+  confirm() {
     this.confirmationService.confirm({
       accept: () => {
         this.delete()
