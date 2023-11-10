@@ -52,6 +52,12 @@ export class FormComponent implements OnInit {
     apartment: {
       minlength: 'El apartamento debe tener al menos 1 carácter.',
       maxlength: 'El apartamento no puede tener más de 4 caracteres.',
+    },
+    product: {
+      required: 'El campo productos es obligatorio.'
+    },
+    service: {
+      required: 'El campo servicios es obligatorio.'
     }
   };
 
@@ -65,8 +71,8 @@ export class FormComponent implements OnInit {
       tower: [null, [Validators.minLength(1), Validators.maxLength(1)]],
       floor: [null, [Validators.minLength(1), Validators.maxLength(2)]],
       apartment: [null, [Validators.minLength(1), Validators.maxLength(4)]],
-      products: ['', []],
-      services: ['', []]
+      products: ['', [Validators.required]],
+      services: ['', [Validators.required]]
     });
   }
 
